@@ -4,29 +4,25 @@
 </head>
 <body>
     <%- include('../includes/navigation.ejs') %>
-                    
-    <div class="d-flex m-5 justify-content-center">
+    
+    <form class="d-flex m-5 justify-content-center" action="/carrito" method="POST">
         <div class="card" style="width: 18rem;">
             <a href="/productos/<%= producto.id %>">
                 <img src="<%=producto.urlImagen %>" class="card-img-top" alt="<%= producto.nombre %>">
             </a>
-            <div class="card-body">
-                <form action="/agregar-al-carrito" method="POST">
-                    <button class="btn btn-verde w-100">Añadir al Carrito</button>
-                </form>
-            </div>
+            <div class="card-body"> <button class="btn btn-verde w-100">Añadir al Carrito</button> </div>
         </div>
         <div class="mx-3">
             <h5 class="card-title text-center mt-2"><%= producto.nombre %></h5>
             <h5 class="card-title text-center mt-2">S/. <%= producto.precio %></h5>
+            
             <h5>Descripción</h5>
             <p class="text-center mt-2"><%= producto.descripcion %></p>
+            <h5>Cantidad</h5>
+            <input type="number" id="cantidad" min="1" step="1" name="cantidad" value="1" class="form-control text-center w-25"/>
         </div>
-    </div>    
+    </form> 
 
     </div>
-
-       
-
-        
+    
 <%- include('../includes/end.ejs') %>
