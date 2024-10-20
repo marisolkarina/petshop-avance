@@ -29,11 +29,11 @@
                                 
                                 <div class="col-2">
                                     
-                                    <a href="/admin/editar-usuario/<%= usuario.id %>" class="btn btn-warning w-50">Editar</a>
+                                    <a href="/admin/editar-usuario/<%= usuario.id %>" class="btn btn-warning w-50 mb-2">Editar</a>
                                     
-                                    <form action="#" method="POST" >
-                                        
-                                        <button class="btn btn-danger w-50 mt-2" type="submit">Eliminar</button>
+                                    <form action="/admin/eliminar-usuario" method="POST">
+                                        <input type="hidden" value="<%= usuario.id %>" name="idUsuario">
+                                        <button class="btn btn-danger w-50" type="submit">Eliminar</button>
                                     </form>
                                 </div>
                                 

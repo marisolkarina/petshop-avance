@@ -65,4 +65,13 @@ module.exports = class Usuario {
             cb(usuario);
         })
     }
+
+    static deleteById(id) {
+        getUsuariosFromFile(usuarios => {
+            const usuariosActualizados = usuarios.filter(user => user.id !== id);
+            fs.writeFile(u, JSON.stringify(usuariosActualizados), err => {
+                console.log(err);
+            });
+        });
+    }
 }

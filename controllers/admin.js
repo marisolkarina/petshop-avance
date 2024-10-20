@@ -46,7 +46,6 @@ exports.getEditarProducto = (req, res) => {
 }
 
 
-//postEditarProducto
 
 // Administracion de usuarios 
 exports.getUsuarios = (req, res) => {
@@ -117,4 +116,10 @@ exports.postEditarUsuario = (req, res, next) => {
     );
     usuarioActualizado.save();
     res.redirect('/admin/usuarios');
-  };
+};
+
+exports.postEliminarUsuario = (req, res, next) => {
+    const idUsuario = req.body.idUsuario;
+    Usuario.deleteById(idUsuario);
+    res.redirect('/admin/usuarios');
+}
