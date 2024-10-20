@@ -24,7 +24,28 @@ module.exports = class Usuario {
         this.role = role;
     }
 
+    save() {
 
+        getUsuariosFromFile(usuarios => {
+            if (this.id) {
+                const indiceUsuarioExistente = usuarios.findIndex(
+                    user => user.id === this.id
+                );
+                const usuarioActualizado = [...usuarios];
+                usuarioActualizado[indiceUsuarioExistente] = this;
+                fs.writeFile(u, JSON.stringify(usuarioActualizado), err => {
+                    console.log(err);
+                });
+            } else {
+                this.id = Math.random().toString();
+                usuarios.push(this);
+                fs.writeFile(u, JSON.stringify(usuarios), err => {
+                    console.log(err);
+                });
+            }
+        });
+
+    }
 
     static fetchAll(cb) {
         return getUsuariosFromFile(cb);

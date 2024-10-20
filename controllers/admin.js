@@ -72,6 +72,19 @@ exports.getCrearUsuario = (req, res) => {
     })
 };
 
+exports.postCrearUsuario = (req, res) => {
+    const nombre = req.body.nombre;
+    const email = req.body.email;
+    const password = req.body.password;
+    const role = req.body.role;
+
+    const usuario = new Usuario(null, nombre, email, password, role);
+
+    usuario.save();
+
+    res.redirect('/')
+}
+
 exports.getEditarUsuario = (req, res) => {
 
     const idUsuario = req.params.idUsuario;
@@ -88,3 +101,20 @@ exports.getEditarUsuario = (req, res) => {
         })
     })
 }
+
+exports.postEditarUsuario = (req, res, next) => {
+    const idUsuario = req.body.idUsuario;
+    const nombre = req.body.nombre;
+    const email = req.body.email;
+    const password = req.body.password;
+    const role = req.body.role;
+    const usuarioActualizado = new Usuario(
+      idUsuario,
+      nombre,
+      email,
+      password,
+      role
+    );
+    usuarioActualizado.save();
+    res.redirect('/admin/usuarios');
+  };

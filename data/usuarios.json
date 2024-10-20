@@ -1,16 +1,1 @@
-[
-    {
-        "id": "1",
-        "nombre": "Marisol Pachauri",
-        "email": "marisol@mail.com",
-        "password": "123001",
-        "role": "admin"
-    },
-    {
-        "id": "2",
-        "nombre": "Alexia Flores",
-        "email": "alexia@mail.com",
-        "password": "123002",
-        "role": "user"
-    }
-]
+[{"id":"1","nombre":"Marisol Pachauri","email":"marisol@mail.com","password":"123001","role":"admin"},{"id":"2","nombre":"Alexia Flores","email":"alexia@mail.com","password":"123002","role":"user"},{"id":"0.22929337696473584","nombre":"Maria Sanchez","email":"maria@mail.com","password":"123003","role":"user"}]

@@ -20,8 +20,11 @@ router.get('/usuarios', adminController.getUsuarios);
 // /admin/usuarios
 router.get('/crear-usuario', adminController.getCrearUsuario);
 
+router.post('/crear-usuario', adminController.postCrearUsuario);
+
 // /admin/editar-usuario
 router.get('/editar-usuario/:idUsuario', adminController.getEditarUsuario);
 
+router.post('/editar-usuario/:idUsuario', adminController.postEditarUsuario);
 
 module.exports = router;

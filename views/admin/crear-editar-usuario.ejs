@@ -8,8 +8,8 @@
     <main>
         <form action="/admin/<% if (modoEdicion) { %>editar-usuario<% } else { %>crear-usuario<% } %>" method="POST">
             <div class="form-control">
-                <label for="nombreusuario">Nombre</label>
-                <input type="text" name="nombreusuario" id="nombreusuario" value="<% if (modoEdicion) { %><%= usuario.nombre %><% } %>">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" value="<% if (modoEdicion) { %><%= usuario.nombre %><% } %>">
             </div>
             
             <div class="form-control">
