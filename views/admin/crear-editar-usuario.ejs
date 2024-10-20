@@ -1,0 +1,36 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/producto.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <form action="/admin/<% if (modoEdicion) { %>editar-usuario<% } else { %>crear-usuario<% } %>" method="POST">
+            <div class="form-control">
+                <label for="nombreusuario">Nombre</label>
+                <input type="text" name="nombreusuario" id="nombreusuario" value="<% if (modoEdicion) { %><%= usuario.nombre %><% } %>">
+            </div>
+            
+            <div class="form-control">
+                <label for="role">Tipo de usuario</label>
+                <input type="text" name="role" id="role" value="<% if (modoEdicion) { %><%= usuario.role %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" value="<% if (modoEdicion) { %><%= usuario.email %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="text" name="password" id="password" value="<% if (modoEdicion) { %><%= usuario.password %><% } %>">
+            </div>
+
+            <% if (modoEdicion) { %>
+                <input type="hidden" value="<%= usuario.id %>" name="idUsuario">
+            <% } %>
+
+            <button class="btn btn-verde" type="submit"><% if (modoEdicion) { %>Actualizar Usuario<% } else { %>Crear Usuario<% } %></button>
+        </form>
+    </main>
+
+<%- include('../includes/end.ejs') %>

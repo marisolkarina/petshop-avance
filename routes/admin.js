@@ -17,8 +17,11 @@ router.get('/editar-producto/:idProducto', adminController.getEditarProducto);
 // /admin/usuarios
 router.get('/usuarios', adminController.getUsuarios);
 
-// /admin/productos
-// router.post('/crear-producto', adminController.postCrearProducto);
+// /admin/usuarios
+router.get('/crear-usuario', adminController.getCrearUsuario);
+
+// /admin/editar-usuario
+router.get('/editar-usuario/:idUsuario', adminController.getEditarUsuario);
 
 
 module.exports = router;

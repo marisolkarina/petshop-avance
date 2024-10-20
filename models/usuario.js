@@ -30,7 +30,14 @@ module.exports = class Usuario {
         return getUsuariosFromFile(cb);
     }
 
-    // verificar que el usuario exista
+    static findById(id, cb) {
+        getUsuariosFromFile(usuarios => {
+            const usuario = usuarios.find(user => user.id === id);
+            cb(usuario);
+        });
+    }
+
+    // verificar que el usuario exista al hacer login
     static findUsuario(email, password, cb) {
         getUsuariosFromFile(usuarios => {
             const usuario = usuarios.find(user => user.email === email && user.password === password);

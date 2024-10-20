@@ -1,8 +1,6 @@
 const Producto = require('../models/producto');
 const Usuario = require('../models/usuario')
 
-
-
 exports.getProductos = (req, res) => {
     let productos = [];
     Producto.fetchAll(productosObtenidos => {
@@ -65,3 +63,28 @@ exports.getUsuarios = (req, res) => {
 
 
 };
+
+exports.getCrearUsuario = (req, res) => {
+    res.render('admin/crear-editar-usuario', { 
+        titulo: 'Crear usuario', 
+        path: '/crear-usuario',
+        modoEdicion: false
+    })
+};
+
+exports.getEditarUsuario = (req, res) => {
+
+    const idUsuario = req.params.idUsuario;
+    Usuario.findById(idUsuario, usuario => {
+        console.log(usuario);
+        if (!usuario) {
+            return res.redirect('/admin/usuarios');
+        }
+        res.render('admin/crear-editar-usuario', { 
+            titulo: 'Editar Usuario', 
+            path: '/admin/editar-usuario',
+            usuario: usuario,
+            modoEdicion: true,
+        })
+    })
+}
