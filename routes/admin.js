@@ -25,6 +25,6 @@ router.post('/crear-usuario', adminController.postCrearUsuario);
 // /admin/editar-usuario
 router.get('/editar-usuario/:idUsuario', adminController.getEditarUsuario);
 
-router.post('/editar-usuario/:idUsuario', adminController.postEditarUsuario);
+router.post('/editar-usuario', adminController.postEditarUsuario);
 
 module.exports = router;
