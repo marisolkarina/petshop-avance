@@ -11,6 +11,9 @@ router.get('/productos', adminController.getProductos);
 // /admin/crear-producto
 router.get('/crear-producto', adminController.getCrearProducto);
 
+// /admin/editar-producto
+router.get('/editar-producto/:idProducto', adminController.getEditarProducto);
+
 // /admin/usuarios
 router.get('/usuarios', adminController.getUsuarios);
 

@@ -19,7 +19,7 @@ exports.getProductos = (req, res) => {
 };
 
 exports.getCrearProducto = (req, res) => {
-    res.render('admin/crear-producto', { 
+    res.render('admin/crear-editar-producto', { 
         titulo: 'Crear Producto', 
         path: '/admin/crear-producto',
         modoEdicion: false
@@ -27,6 +27,28 @@ exports.getCrearProducto = (req, res) => {
 };
 
 //postCrearProducto falta
+
+// getEditarProducto
+
+exports.getEditarProducto = (req, res) => {
+
+    const idProducto = req.params.idProducto;
+    Producto.findById(idProducto, producto => {
+        console.log(producto);
+        if (!producto) {
+            return res.redirect('/admin/productos');
+        }
+        res.render('admin/crear-editar-producto', { 
+            titulo: 'Editar Producto', 
+            path: '/admin/editar-producto',
+            producto: producto,
+            modoEdicion: true,
+        })
+    })
+}
+
+
+//postEditarProducto
 
 // Administracion de usuarios 
 exports.getUsuarios = (req, res) => {
