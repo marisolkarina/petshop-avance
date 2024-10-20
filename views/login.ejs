@@ -1,0 +1,27 @@
+<%- include('includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/producto.css">
+    <link rel="stylesheet" href="/css/main.css">
+<body>
+    <main>
+        <%- include('includes/navigation.ejs') %>
+        
+        <form action='/login' method="POST" class="m-5 d-flex flex-column align-items-center">
+            <div class="mb-3 w-50">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3 w-50">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            
+            <button type="submit" class="btn btn-verde w-50">Iniciar sesion</button>
+        </form>
+
+        <% if (typeof existe !== 'undefined' && !existe) { %>
+            <p class="m-5">El usuario ingresado no existe</p>
+        <% } %>
+
+    </main>
+
+<%- include('includes/end.ejs') %>

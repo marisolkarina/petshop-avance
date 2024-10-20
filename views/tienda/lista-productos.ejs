@@ -1,0 +1,50 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/producto.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <div class="mx-4">
+        <div class="row">
+            <aside class="col-1">
+                <%- include('../includes/filtros.ejs') %>
+            </aside>
+            <main class="col-11 d-flex flex-column align-items-end">
+                    
+                <%- include('../includes/ordenar.ejs') %>
+    
+                <div class="container">
+                    <% if (prods.length > 0) { %>
+                        <div class="row m-3">
+                            <% for (let producto of prods) { %>
+                                <div class="col-md-4 mb-2">
+                                    <div class="card" style="width: 18rem;">
+                                        <a href="/productos/<%= producto.id %>">
+                                            <img src="<%=producto.urlImagen %>" class="card-img-top" alt="<%= producto.nombre %>">
+                                        </a>
+                                        <div class="card-body">
+                                            <form action="/agregar-al-carrito" method="POST">
+                                                <button class="btn btn-verde w-100">Añadir al Carrito</button>
+                                            </form>
+                                            <h5 class="card-title text-center mt-2"><%= producto.nombre %></h5>
+                                            <h5 class="card-title text-center mt-2"><%= producto.precio %></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>               
+                        </div>
+                    <% } else { %>
+                        <h1>No hay productos</h1>
+                    <% } %>
+    
+                </div>    
+        
+            </main>
+        </div>
+    </div>
+
+       
+
+        
+<%- include('../includes/end.ejs') %>

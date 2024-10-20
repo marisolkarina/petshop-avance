@@ -1,0 +1,66 @@
+<header class="main-header">
+    <!-- <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item">
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Inicio</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/productos' ? 'active' : '' %>" href="/productos">Productos</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/carrito' ? 'active' : '' %>" href="/carrito">Carrito</a>
+            </li>
+
+            <li class="main-header__item">
+                <a class="<%= path === '/pedidos' ? 'active' : '' %>" href="/pedidos">Pedidos</a>
+            </li>
+
+            <li class="main-header__item">
+                <a class="<%= path === '/admin/crear-producto' ? 'active' : '' %>" href="/admin/crear-producto">Crear Producto
+                </a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin/productos' ? 'active' : '' %>" href="/admin/productos">Admin Productos
+                </a>
+            </li>                    
+        </ul>
+
+        
+
+    </nav> -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid d-flex flex-row-reverse">
+            <div class="navbar-nav">
+                <a class="nav-link <%= path === '/' ? 'active' : 'inactive' %>" href="/">Inicio</a>
+                <a class="nav-link <%= path === '/productos' ? 'active' : 'inactive' %>" href="/productos">Productos</a>
+                <a class="nav-link" href="#">Sobre nosotros</a>
+                <a class="nav-link" href="#">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand">PetShop</a>
+            <form class="d-flex" role="search" action="/productos" method="POST">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="textoIngresado">
+                <button class="btn btn-verde" type="submit">Buscar</button>
+            </form>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid bg-orange">
+            <div class="navbar-nav">
+                <a class="nav-link text-white" href="/productos/perro">Perro</a>
+                <a class="nav-link text-white" href="/productos/gato">Gato</a>
+                <a class="nav-link text-white" href="/productos/conejo">Conejo</a>
+                <a class="nav-link text-white" href="/productos/hamster">Hamster</a>
+                <a class="nav-link text-white" href="/login">Login</a>
+                <a class="nav-link text-white" href="#">Carrito</a>
+            </div>
+        </div>
+    </nav>
+
+    
+</header>

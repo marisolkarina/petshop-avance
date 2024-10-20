@@ -1,0 +1,49 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/producto.css">
+    <link rel="stylesheet" href="/css/main.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+        <%- include('../includes/acciones.ejs') %>
+        
+        <main>
+            <div class="container">
+                <% if (users.length > 0) { %>
+                    
+                        <% for (let usuario of users) { %>
+                            <div class="d-flex align-items-center">
+                                <div class="col-4 mb-2 card" style="width: 18rem;">
+                                    <img src="https://media.istockphoto.com/id/1130884625/vector/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-app-in-circle-design.jpg?s=612x612&w=0&k=20&c=1ky-gNHiS2iyLsUPQkxAtPBWH1BZt0PKBB1WBtxQJRE=" alt="icono user"/>
+                                    <h5 class="card-title text-center mt-2"><%= usuario.id %></h5>
+                                    <h5 class="card-title text-center mt-2"><%= usuario.nombre %></h5>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="card-title text-center">Datos de la cuenta</h5>
+                                    <h5 class="text-center mt-2"><%= usuario.role %></h5>
+                                    <p class="text-center"><%= usuario.email %></p>
+                                    <p class="text-center"><%= usuario.password %></p>
+                                </div>
+                                
+                                <div class="col-2">
+                                    
+                                    <a href="#" class="btn btn-warning w-50">Editar</a>
+                                    
+                                    <form action="#" method="POST" >
+                                        
+                                        <button class="btn btn-danger w-50 mt-2" type="submit">Eliminar</button>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                            
+                        <% } %>               
+                    
+                <% } else { %>
+                    <h1>No hay usuarios</h1>
+                <% } %>
+            </div>
+        </main>
+
+        <%- include('../includes/end.ejs') %>

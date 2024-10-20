@@ -1,0 +1,16 @@
+[
+    {
+        "id": "1",
+        "nombre": "Marisol Pachauri",
+        "email": "marisol@mail.com",
+        "password": "123001",
+        "role": "admin"
+    },
+    {
+        "id": "2",
+        "nombre": "Anthony Espinoza",
+        "email": "anthony@mail.com",
+        "password": "123002",
+        "role": "user"
+    }
+]

@@ -1,0 +1,32 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/producto.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+                    
+    <div class="d-flex m-5 justify-content-center">
+        <div class="card" style="width: 18rem;">
+            <a href="/productos/<%= producto.id %>">
+                <img src="<%=producto.urlImagen %>" class="card-img-top" alt="<%= producto.nombre %>">
+            </a>
+            <div class="card-body">
+                <form action="/agregar-al-carrito" method="POST">
+                    <button class="btn btn-verde w-100">Añadir al Carrito</button>
+                </form>
+            </div>
+        </div>
+        <div class="mx-3">
+            <h5 class="card-title text-center mt-2"><%= producto.nombre %></h5>
+            <h5 class="card-title text-center mt-2">S/. <%= producto.precio %></h5>
+            <h5>Descripción</h5>
+            <p class="text-center mt-2"><%= producto.descripcion %></p>
+        </div>
+    </div>    
+
+    </div>
+
+       
+
+        
+<%- include('../includes/end.ejs') %>
