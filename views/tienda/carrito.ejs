@@ -5,10 +5,63 @@
 <body>
     <main>
         <%- include('../includes/navigation.ejs') %>
-        
+                
+        <div class="container carrito-container">
+            <h3>Carrito de compras</h3>
 
-        
-        <h1>Carrito de compras</h1>
+            <h4>Total: S/. <%= carrito.total.toFixed(2) %></h4>
+            
+            <% if (carrito.productos.length > 0) { %>
+                <div class="carrito-detalle">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Imagen</th>
+                                <th>Color</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                                <th>Subtotal</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% carrito.productos.forEach(producto => { %>
+
+                                <tr>
+                                    <td><%= producto.nombre %></td>
+                                    <td>
+                                        <img src="<%= producto.urlImagen %>" alt="<%= producto.nombre %>" class="img-thumbnail carrito-img">
+                                    </td>
+                                    <td><%= producto.color %></td>
+                                    <td>
+                                        <form action="/update-cantidad" method="POST">
+                                            <input type="hidden" name="productoId" value="<%= producto.id %>">
+                                            <input type="number" name="cantidad" value="<%= producto.cantidad %>" min="1" class="form-control">
+                                            <button type="submit" class="btn btn-secondary mt-2">Actualizar</button>
+                                        </form>
+                                    </td>
+                                    <td><%= producto.precio %></td>
+                                    <input type="hidden" name="productoPrecio" value="<%= producto.precio %>">
+                                    <td>S/. <%= (producto.precio*producto.cantidad).toFixed(2) %></td>
+                                    <td>
+                                        <form action="/eliminar-producto" method="POST">
+                                            <input type="text" name="idProducto" value="<%= producto.id %>">
+                                            
+                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+
+                </div>
+            <% } else { %>
+                <p>No hay productos en el carrito.</p>
+                <a href="/productos" class="btn btn-primary">Seguir comprando</a>
+            <% } %>
+        </div>
 
 
 

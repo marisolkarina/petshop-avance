@@ -69,8 +69,12 @@ module.exports = class Producto {
 
     static deleteById(id) {
         getProductosFromFile(productos => {
+            const producto = productos.find(prod => prod.id === id);
             const productosActualizados = productos.filter(prod => prod.id !== id);
             fs.writeFile(p, JSON.stringify(productosActualizados), err => {
+                if (!err) {
+                    Carrito.eliminarProducto(id, producto.precio);
+                }
                 console.log(err);
             });
         });

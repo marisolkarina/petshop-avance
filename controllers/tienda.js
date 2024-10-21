@@ -131,18 +131,48 @@ exports.postProductoPalabra = (req, res) => {
 
 
 exports.getCarrito = (req, res, next) => {
-    console.log("Accediendo a /carrito");
-    res.render('tienda/carrito', {
-      path: '/carrito',
-      titulo: 'Mi Carrito'
+
+    Carrito.getCarritoFromFile(carrito => {
+        Producto.fetchAll(productos => {
+            const productosEnCarrito = [];
+            for (let prod of carrito.productos) {
+                const productoEncontrado = productos.find(p => p.id === prod.id);
+                if (productoEncontrado) {
+                    productosEnCarrito.push({
+                        ...productoEncontrado,
+                        cantidad: prod.cantidad
+                    });
+                }
+            }
+                res.render('tienda/carrito', {
+                path: '/carrito',
+                titulo: 'Mi Carrito',
+                carrito: {
+                    productos: productosEnCarrito,
+                    total: carrito.precioTotal
+                }
+            });
+        });
     });
 };
 
 exports.postCarrito = (req, res) => {
     const idProducto = req.body.idProducto;
+    const cantidad = req.body.cantidad;
 
     Producto.findById(idProducto, producto => {
-        Carrito.agregarProducto(idProducto, producto.precio);
-        res.redirect('/agregar-carrito');
+        Carrito.agregarProducto(idProducto, producto.precio, cantidad);
+        res.redirect('/carrito');
     })
+}
+
+exports.postEliminarProductoCarrito = (req, res) => {
+    const idProducto = req.body.idProducto;
+
+    Producto.findById(idProducto, producto => {
+
+        Carrito.eliminarProducto(idProducto, producto.precio);
+        res.redirect('/carrito');
+    })
+    
 }

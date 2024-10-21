@@ -7,7 +7,7 @@ const p = path.join(raizDir, 'data', 'carrito.json');
 
 
 module.exports = class Carrito {
-    static agregarProducto(id, precio) {
+    static agregarProducto(id, precio, cantidadInput) {
 
         fs.readFile(p, (err, fileContent) => {
             let carrito = {productos: [], precioTotal: 0};
@@ -23,16 +23,16 @@ module.exports = class Carrito {
             if(productoExistente) {
                 // Incrementar la cantidad en 1 unidad
                 productoActualizado = {...productoExistente};
-                productoActualizado.cantidad = productoActualizado.cantidad + 1;
+                productoActualizado.cantidad = productoActualizado.cantidad + cantidadInput;
                 carrito.productos = [...carrito.productos];
                 carrito.productos[indiceProductoExistente] = productoActualizado;
             // Si el producto NO existe en el carrito
             } else {
                 // Empezar la cantidad con 1 unidad
-                productoActualizado = {id: id, cantidad: 1};
+                productoActualizado = {id: id, cantidad: cantidadInput};
                 carrito.productos = [...carrito.productos, productoActualizado];
             }
-            carrito.precioTotal = carrito.precioTotal + +precio;
+            carrito.precioTotal = carrito.precioTotal + +precio*cantidadInput;
             fs.writeFile(p, JSON.stringify(carrito), err => {
                 console.log(err);
             })
@@ -55,12 +55,23 @@ module.exports = class Carrito {
             carritoActualizado.productos = carritoActualizado.productos.filter(
                 prod => prod.id !== id
             );
-            carritoActualizado.precioTotal =
-                carritoActualizado.precioTotal - precio * cantidadProducto;
+            carritoActualizado.precioTotal = carritoActualizado.precioTotal - precio * cantidadProducto;
 
             fs.writeFile(p, JSON.stringify(carritoActualizado), err => {
                 console.log(err);
             });
         });
     }
+
+    static getCarritoFromFile(cb) {
+        fs.readFile(p, (err, fileContent) => {
+
+            if(err) {
+                cb({ productos: [], totalPrecio: 0 });
+            } else {
+                cb(JSON.parse(fileContent));
+            }
+        });
+    }
+
 }
