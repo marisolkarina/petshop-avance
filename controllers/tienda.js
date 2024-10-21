@@ -158,10 +158,11 @@ exports.getCarrito = (req, res, next) => {
 
 exports.postCarrito = (req, res) => {
     const idProducto = req.body.idProducto;
-    const cantidad = req.body.cantidad;
+    const cantidad = parseInt(req.body.cantidad, 10);
+    const nombreProducto = req.body.nombreProducto;
 
     Producto.findById(idProducto, producto => {
-        Carrito.agregarProducto(idProducto, producto.precio, cantidad);
+        Carrito.agregarProducto(idProducto, producto.precio, cantidad, nombreProducto);
         res.redirect('/carrito');
     })
 }

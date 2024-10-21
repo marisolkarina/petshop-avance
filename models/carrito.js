@@ -7,7 +7,7 @@ const p = path.join(raizDir, 'data', 'carrito.json');
 
 
 module.exports = class Carrito {
-    static agregarProducto(id, precio, cantidadInput) {
+    static agregarProducto(id, precio, cantidadInput, nombreProducto) {
 
         fs.readFile(p, (err, fileContent) => {
             let carrito = {productos: [], precioTotal: 0};
@@ -28,8 +28,8 @@ module.exports = class Carrito {
                 carrito.productos[indiceProductoExistente] = productoActualizado;
             // Si el producto NO existe en el carrito
             } else {
-                // Empezar la cantidad con 1 unidad
-                productoActualizado = {id: id, cantidad: cantidadInput};
+                
+                productoActualizado = {id: id, nombreProducto: nombreProducto, cantidad: cantidadInput};
                 carrito.productos = [...carrito.productos, productoActualizado];
             }
             carrito.precioTotal = carrito.precioTotal + +precio*cantidadInput;
