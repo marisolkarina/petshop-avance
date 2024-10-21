@@ -56,7 +56,7 @@ exports.getRegistrarse = (req, res) => {
         titulo: 'Registro',
         path: '/registro'
     });
-};  // <-- Este punto y coma cierra correctamente la función
+};
 
 // Controlador para renderizar la página de recuperación de contraseña
 exports.getRecuperarContraseña = (req, res) => {
@@ -74,4 +74,38 @@ exports.postRecuperarContraseña = (req, res) => {
 
     // Redirigir a una página de confirmación o volver a la página principal
     res.redirect('/login');
+};  
+
+// Controlador para manejar el registro de nuevos usuarios
+exports.postRegistrarse = (req, res) => {
+    const nombre = req.body.nombre;
+    const email = req.body.email;
+    const password = req.body.password;
+    const confirmarPassword = req.body.confirmPassword; // Asumiendo que tienes un campo para confirmar la contraseña
+
+    // Verificar que las contraseñas coinciden
+    if (password !== confirmarPassword) {
+        return res.render('login-registro', {
+            titulo: 'Registro',
+            path: '/registro',
+            errorMensaje: 'Las contraseñas no coinciden.'
+        });
+    }
+
+    // Verificar si el usuario ya existe
+    Usuario.findUsuario(email, password, (usuarioExistente) => {
+        if (usuarioExistente) {
+            return res.render('login-registro', {
+                titulo: 'Registro',
+                path: '/registro',
+                errorMensaje: 'El usuario ya existe.'
+            });
+        } else {
+            // Crear un nuevo usuario y guardarlo
+            const nuevoUsuario = new Usuario(null, nombre, email, password, 'user');
+            nuevoUsuario.save(); // Guardar el nuevo usuario en el archivo usuarios.json
+
+            res.redirect('/login'); // Redirigir al inicio de sesión después de registrarse
+        }
+    });
 };
