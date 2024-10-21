@@ -95,3 +95,37 @@ main {
   background-color: #3E4059;
   color: white;
 }
+
+/* Content wrapper for left and right sections */
+.content-wrapper {
+  display: flex;
+  justify-content: space-between; /* Space between left and right sections */
+  margin-top: 20px; /* Optional margin to add space below the header */
+}
+
+/* Left-aligned content */
+.left-aligned-content {
+  width: 50%; /* Adjust width as needed */
+  padding: 20px;
+}
+
+/* Right-aligned content */
+.right-aligned-content {
+  width: 50%; /* Adjust width as needed */
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  align-items: center; /* Center content horizontally */
+  justify-content: space-between; /* Space between the top content and bottom button */
+}
+
+/* Content container styles */
+.content-container {
+  text-align: center; /* Center the text within the container */
+}
+
+/* Button styling to position it at the bottom */
+.right-btn {
+  align-self: flex-end; /* Align the button to the bottom */
+  margin-top: auto; /* Push the button to the bottom of the section */
+}

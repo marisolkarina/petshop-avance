@@ -1,0 +1,36 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/producto.css">
+<link rel="stylesheet" href="/css/main.css">
+
+<body>
+    <main>
+        <!-- Incluir barra de navegación -->
+        <%- include('includes/navigation.ejs') %>
+
+        <!-- Contenido principal centrado verticalmente -->
+        <div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+            <div class="w-50 text-center">
+                <form action="/recuperar-contrasena" method="POST" class="m-5 d-flex flex-column align-items-center">
+                    <h2>INGRESE SU CORREO ELECTRÓNICO</h2>
+
+                    <!-- Espacio para Dirección de correo -->
+                    <div class="mb-3 w-75">
+                        <label for="email" class="form-label">Dirección de correo electrónico</label>
+                        <input type="email" name="email" class="form-control" id="email" required>
+                    </div>
+
+                    <!-- Botón para enviar el formulario -->
+                    <button type="submit" class="btn btn-verde w-75 mt-3">Enviar</button>
+                </form>
+
+                <!-- Mensaje de confirmación -->
+                <p class="text-muted w-75">
+                    Se le enviará un mensaje a su correo, con la opción de modificar su contraseña.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Incluir pie de página -->
+    <%- include('includes/end.ejs') %>
+</body>

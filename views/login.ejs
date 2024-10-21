@@ -1,27 +1,67 @@
 <%- include('includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/producto.css">
-    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/producto.css">
+<link rel="stylesheet" href="/css/main.css">
+
 <body>
     <main>
+        <!-- Keep the navigation header at the top -->
         <%- include('includes/navigation.ejs') %>
-        
-        <form action='/login' method="POST" class="m-5 d-flex flex-column align-items-center">
-            <div class="mb-3 w-50">
-                <label for="exampleInputEmail1" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3 w-50">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            
-            <button type="submit" class="btn btn-verde w-50">Iniciar sesion</button>
-        </form>
 
-        <% if (typeof existe !== 'undefined' && !existe) { %>
-            <p class="m-5">El usuario ingresado no existe</p>
-        <% } %>
+        <!-- Wrapper for left and right content -->
+        <div class="content-wrapper">
+            <!-- Left-aligned content -->
+            <div class="left-aligned-content">
+                <form action='/login' method="POST" class="m-5 d-flex flex-column align-items-center">
+                    <h2>ACCEDER</h2>
+                    
+                    <!-- Espacio para Email -->
+                    <div class="mb-3 w-50">
+                        <label for="exampleInputEmail1" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
 
+                    <!-- Espacio para Contraseña -->
+                    <div class="mb-3 w-50">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+
+                    <!-- Recordarme -->
+                    <div class="form-check w-50 mb-3">
+                        <input class="form-check-input" type="checkbox" id="recordarme" name="recordarme">
+                        <label class="form-check-label" for="recordarme">
+                            Recordarme
+                        </label>
+                    </div>
+
+                    <!-- Botón de Iniciar sesión -->
+                    <button type="submit" class="btn btn-verde w-50">Iniciar sesión</button>
+                </form>
+
+                <!-- Enlace Olvidaste tu contraseña (fuera del formulario) -->
+                <div class="w-50 text-end mt-2">
+                    <a href="/login-contrasena" class="text-end">¿Olvidaste tu contraseña?</a>
+                </div>
+
+                <% if (typeof existe !== 'undefined' && !existe) { %>
+                    <p class="m-5">El usuario ingresado no existe</p>
+                <% } %>
+            </div>
+
+            <!-- Right-aligned content -->
+            <div class="right-aligned-content">
+                <!-- Update form action to point to /login-registro -->
+                <form action='/login-registro' method="GET" class="m-5 d-flex flex-column align-items-center">
+                    <h2>REGISTRARSE</h2>
+                    <p>Registrarse en este sitio le permite acceder al estado y al historial de su pedido. Simplemente complete los campos a continuación y
+                        obtendremos una nueva cuenta configurada para usted en poco tiempo.</p>
+                    <p>Solo te pediremos la información necesaria para que el proceso de
+                        compra sea más rápido y sencillo.</p>
+                    <!-- Button placed directly after text -->
+                    <button type="submit" class="btn btn-verde w-50">Regístrate</button>
+                </form>
+            </div>
+        </div>
     </main>
 
 <%- include('includes/end.ejs') %>
