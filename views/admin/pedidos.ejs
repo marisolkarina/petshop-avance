@@ -1,0 +1,38 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/producto.css">
+    <link rel="stylesheet" href="/css/main.css">
+<body>
+    <main>
+        <%- include('../includes/navigation.ejs') %>
+        
+        
+        <h1>Todos los pedidos</h1>
+
+        <% if (pedidos.length > 0) { %>
+                    
+            <% for (let pedido of pedidos) { %>
+                <div class="d-flex align-items-center">
+                    <div class="col-4 mb-2 card" style="width: 18rem;">
+                        <h5 class="card-title text-center mt-2">Id pedido: <%= pedido.id %></h5>
+                        <h5 class="card-title text-center mt-2">Id usuario: <%= pedido.idUsuario %></h5>
+                        <h5 class="text-center">Productos del pedido: </h5>
+                        <div class="text-center">
+                            <% for (let indice of pedido.productos) { %>
+                                <%= indice.nombre %>
+                            <% } %> 
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            <% } %>               
+        
+        <% } else { %>
+            <h1>No hay pedidos</h1>
+        <% } %>
+
+
+
+    </main>
+
+<%- include('../includes/end.ejs') %>

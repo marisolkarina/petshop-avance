@@ -1,3 +1,4 @@
+const Pedido = require('../models/pedido');
 const Producto = require('../models/producto');
 const Usuario = require('../models/usuario')
 
@@ -159,3 +160,19 @@ exports.postEliminarUsuario = (req, res, next) => {
     Usuario.deleteById(idUsuario);
     res.redirect('/admin/usuarios');
 }
+
+
+exports.getPedidos = (req, res) => {
+    let pedidos = [];
+    Pedido.fetchAll(pedidosObtenidos => {
+        pedidos = pedidosObtenidos;
+
+        res.render('admin/pedidos', {
+            pedidos: pedidos,
+            titulo: "Administracion de Pedidos", 
+            path: "/admin/pedidos"
+        });
+    })
+
+
+};

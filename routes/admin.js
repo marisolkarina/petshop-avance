@@ -37,4 +37,7 @@ router.post('/editar-usuario', adminController.postEditarUsuario);
 // /admin/eliminar-usuario
 router.post('/eliminar-usuario', adminController.postEliminarUsuario);
 
+// /admin/pedidos
+router.get('/pedidos', adminController.getPedidos);
+
 module.exports = router;
