@@ -1,0 +1,19 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/producto.css">
+    <link rel="stylesheet" href="/css/main.css">
+<body>
+    <main>
+        <%- include('../includes/navigation.ejs') %>
+        
+        <h5>Bienvenido <%= usuario.nombre %></h5>
+
+        
+
+        <form action="/pedidos" method="POST">
+            <input type="text" value="<%= usuario.id %>" name="idUsuario">
+            <button class="btn btn-verde">Ver mis pedidos</button>
+        </form>
+        
+    </main>
+
+<%- include('../includes/end.ejs') %>
