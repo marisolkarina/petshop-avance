@@ -16,24 +16,37 @@ const getProductosFromFile = (cb) => {
 }
 
 module.exports = class Producto {
-    constructor(id, nombre, urlImagen, descripcion, precio) {
+    constructor(id, nombre, urlImagen, descripcion, precio, categoria, color) {
         this.id = id;
         this.nombre = nombre;
         this.urlImagen = urlImagen;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.categoria = categoria;
+        this.color = color;
     }
 
-    // save() {
-    //     getProductosFromFile( productos => {
-    //         console.log(productos);
-    //         productos.push(this);
-    //         fs.writeFile(p, JSON.stringify(productos), err => {
-    //             console.log(err);
-    //         })
-    //     })
+    save() {
+        getProductosFromFile(productos => {
+            if (this.id) {
+                const indiceProductoExistente = productos.findIndex(
+                    prod => prod.id === this.id
+                );
+                const productoActualizacios = [...productos];
+                productoActualizacios[indiceProductoExistente] = this;
+                fs.writeFile(p, JSON.stringify(productoActualizacios), err => {
+                    console.log(err);
+                });
+            } else {
+                this.id = Math.random().toString();
+                productos.push(this);
+                fs.writeFile(p, JSON.stringify(productos), err => {
+                    console.log(err);
+                });
+            }
+        });
 
-    // }
+    }
 
     static fetchAll(cb) {
         return getProductosFromFile(cb);
@@ -52,5 +65,14 @@ module.exports = class Producto {
             console.log(productosBuscados);
             cb(productosBuscados);
         })
+    }
+
+    static deleteById(id) {
+        getProductosFromFile(productos => {
+            const productosActualizados = productos.filter(prod => prod.id !== id);
+            fs.writeFile(p, JSON.stringify(productosActualizados), err => {
+                console.log(err);
+            });
+        });
     }
 }

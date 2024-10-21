@@ -8,8 +8,8 @@
     <main>
         <form action="/admin/<% if (modoEdicion) { %>editar-producto<% } else { %>crear-producto<% } %>" method="POST">
             <div class="form-control">
-                <label for="nombreproducto">Nombre</label>
-                <input type="text" name="nombreproducto" id="nombreproducto" value="<% if (modoEdicion) { %><%= producto.nombre %><% } %>">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" value="<% if (modoEdicion) { %><%= producto.nombre %><% } %>">
             </div>
             
             <div class="form-control">
@@ -20,6 +20,17 @@
                 <label for="precio">Precio</label>
                 <input type="number" name="precio" id="precio" step="0.01" value="<% if (modoEdicion) { %><%= producto.precio %><% } %>">
             </div>
+
+            <div class="form-control">
+                <label for="categoria">Categoria</label>
+                <input type="text" name="categoria" id="categoria" value="<% if (modoEdicion) { %><%= producto.categoria %><% } %>">
+            </div>
+
+            <div class="form-control">
+                <label for="color">Color</label>
+                <input type="text" name="color" id="color" value="<% if (modoEdicion) { %><%= producto.color %><% } %>">
+            </div>
+            
             <div class="form-control">
                 <label for="descripcion">Descripcion</label>
                 <textarea name="descripcion" id="descripcion" rows="5"><% if (modoEdicion) { %><%= producto.descripcion %><% } %></textarea>

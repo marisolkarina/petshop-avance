@@ -11,8 +11,15 @@ router.get('/productos', adminController.getProductos);
 // /admin/crear-producto
 router.get('/crear-producto', adminController.getCrearProducto);
 
+router.post('/crear-producto', adminController.postCrearProducto);
+
 // /admin/editar-producto
 router.get('/editar-producto/:idProducto', adminController.getEditarProducto);
+
+router.post('/editar-producto', adminController.postEditarProducto);
+
+// /admin/eliminar-producto
+router.post('/eliminar-producto', adminController.postEliminarProducto);
 
 // /admin/usuarios
 router.get('/usuarios', adminController.getUsuarios);

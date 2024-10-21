@@ -1,6 +1,8 @@
 const Producto = require('../models/producto');
 const Usuario = require('../models/usuario')
 
+//Administracion de Productos
+
 exports.getProductos = (req, res) => {
     let productos = [];
     Producto.fetchAll(productosObtenidos => {
@@ -24,9 +26,21 @@ exports.getCrearProducto = (req, res) => {
     })
 };
 
-//postCrearProducto falta
+exports.postCrearProducto = (req, res) => {
 
-// getEditarProducto
+    const nombre = req.body.nombre;
+    const urlImagen = req.body.urlImagen;
+    const precio = req.body.precio;
+    const descripcion = req.body.descripcion;
+    const categoria = req.body.categoria;
+    const color = req.body.color;
+
+    const producto = new Producto(null, nombre, urlImagen, descripcion, precio, categoria, color);
+
+    producto.save();
+
+    res.redirect('/admin/productos')
+};
 
 exports.getEditarProducto = (req, res) => {
 
@@ -45,6 +59,28 @@ exports.getEditarProducto = (req, res) => {
     })
 }
 
+exports.postEditarProducto = (req, res, next) => {
+    const idProducto = req.body.idProducto;
+    const nombre = req.body.nombre;
+    const precio = req.body.precio;
+    const urlImagen = req.body.urlImagen;
+    const descripcion = req.body.descripcion;
+    const productoActualizado = new Producto(
+      idProducto,
+      nombre,
+      urlImagen,
+      descripcion,
+      precio
+    );
+    productoActualizado.save();
+    res.redirect('/admin/productos');
+};
+
+exports.postEliminarProducto = (req, res, next) => {
+    const idProducto = req.body.idProducto;
+    Producto.deleteById(idProducto);
+    res.redirect('/admin/productos');
+  };
 
 
 // Administracion de usuarios 
@@ -81,7 +117,7 @@ exports.postCrearUsuario = (req, res) => {
 
     usuario.save();
 
-    res.redirect('/')
+    res.redirect('/admin/usuarios')
 }
 
 exports.getEditarUsuario = (req, res) => {
