@@ -10,7 +10,7 @@
         
 
         <form action="/pedidos" method="POST">
-            <input type="text" value="<%= usuario.id %>" name="idUsuario">
+            <input type="hidden" value="<%= usuario.id %>" name="idUsuario">
             <button class="btn btn-verde">Ver mis pedidos</button>
         </form>
         

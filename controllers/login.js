@@ -39,9 +39,7 @@ exports.postMisPedidos = (req, res) => {
     console.log(idUsuario);
 
     Pedido.filterByIdUsuario(idUsuario, pedidos => {
-        if (pedidos.length === 0) {
-            return console.log('no tiene pedidos');
-        }
+
         res.render('user/pedidos', {
             titulo: 'Mis pedidos',
             path: '/pedidos',
