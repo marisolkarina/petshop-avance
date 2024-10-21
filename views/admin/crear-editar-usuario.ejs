@@ -5,32 +5,46 @@
 </head>
 <body>
     <%- include('../includes/navigation.ejs') %>
-    <main>
-        <form action="/admin/<% if (modoEdicion) { %>editar-usuario<% } else { %>crear-usuario<% } %>" method="POST">
-            <div class="form-control">
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" id="nombre" value="<% if (modoEdicion) { %><%= usuario.nombre %><% } %>">
+    <main class="container mt-4">
+        <form action="/admin/<% if (modoEdicion) { %>editar-usuario<% } else { %>crear-usuario<% } %>" method="POST" class="p-4 border rounded">
+            <!-- Campo Nombre -->
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" value="<% if (modoEdicion) { %><%= usuario.nombre %><% } %>">
             </div>
             
-            <div class="form-control">
-                <label for="role">Tipo de usuario</label>
-                <input type="text" name="role" id="role" value="<% if (modoEdicion) { %><%= usuario.role %><% } %>">
+            <!-- Campo Tipo de Usuario -->
+            <div class="mb-3">
+                <label for="role" class="form-label">Tipo de usuario</label>
+                <select name="role" id="role" class="form-select">
+                    <option value="admin" <% if (modoEdicion && usuario.role === 'admin') { %>selected<% } %>>Admin</option>
+                    <option value="user" <% if (modoEdicion && usuario.role === 'user') { %>selected<% } %>>User</option>
+                </select>
             </div>
-            <div class="form-control">
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email" value="<% if (modoEdicion) { %><%= usuario.email %><% } %>">
+    
+            <!-- Campo Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" id="email" value="<% if (modoEdicion) { %><%= usuario.email %><% } %>">
             </div>
-            <div class="form-control">
-                <label for="password">Password</label>
-                <input type="text" name="password" id="password" value="<% if (modoEdicion) { %><%= usuario.password %><% } %>">
+    
+            <!-- Campo Password -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="text" class="form-control" name="password" id="password" value="<% if (modoEdicion) { %><%= usuario.password %><% } %>">
             </div>
-
+    
+            <!-- Campo oculto para el ID si está en modo edición -->
             <% if (modoEdicion) { %>
                 <input type="hidden" value="<%= usuario.id %>" name="idUsuario">
             <% } %>
-
-            <button class="btn btn-verde" type="submit"><% if (modoEdicion) { %>Actualizar Usuario<% } else { %>Crear Usuario<% } %></button>
+    
+            <!-- Botón de Envío -->
+            <button class="btn btn-primary" type="submit">
+                <% if (modoEdicion) { %>Actualizar Usuario<% } else { %>Crear Usuario<% } %>
+            </button>
         </form>
     </main>
+    
 
 <%- include('../includes/end.ejs') %>

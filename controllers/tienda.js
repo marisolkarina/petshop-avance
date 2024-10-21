@@ -1,5 +1,6 @@
 const productos = [];
 const Producto = require('../models/producto');
+const Carrito = require('../models/carrito');
 
 exports.getProductos = (req, res) => {
     let productos = [];
@@ -126,4 +127,22 @@ exports.postProductoPalabra = (req, res) => {
         });
     });
     
+}
+
+
+exports.getCarrito = (req, res, next) => {
+    console.log("Accediendo a /carrito");
+    res.render('tienda/carrito', {
+      path: '/carrito',
+      titulo: 'Mi Carrito'
+    });
+};
+
+exports.postCarrito = (req, res) => {
+    const idProducto = req.body.idProducto;
+
+    Producto.findById(idProducto, producto => {
+        Carrito.agregarProducto(idProducto, producto.precio);
+        res.redirect('/agregar-carrito');
+    })
 }

@@ -5,43 +5,55 @@
 </head>
 <body>
     <%- include('../includes/navigation.ejs') %>
-    <main>
-        <form action="/admin/<% if (modoEdicion) { %>editar-producto<% } else { %>crear-producto<% } %>" method="POST">
-            <div class="form-control">
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" id="nombre" value="<% if (modoEdicion) { %><%= producto.nombre %><% } %>">
+    <main class="container mt-4">
+        <form action="/admin/<% if (modoEdicion) { %>editar-producto<% } else { %>crear-producto<% } %>" method="POST" class="p-4 border rounded">
+            <!-- Campo Nombre -->
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" value="<% if (modoEdicion) { %><%= producto.nombre %><% } %>">
             </div>
             
-            <div class="form-control">
-                <label for="urlImagen">URL Imagen</label>
-                <input type="text" name="urlImagen" id="urlImagen" value="<% if (modoEdicion) { %><%= producto.urlImagen %><% } %>">
+            <!-- Campo URL Imagen -->
+            <div class="mb-3">
+                <label for="urlImagen" class="form-label">URL Imagen</label>
+                <input type="text" class="form-control" name="urlImagen" id="urlImagen" value="<% if (modoEdicion) { %><%= producto.urlImagen %><% } %>">
             </div>
-            <div class="form-control">
-                <label for="precio">Precio</label>
-                <input type="number" name="precio" id="precio" step="0.01" value="<% if (modoEdicion) { %><%= producto.precio %><% } %>">
+    
+            <!-- Campo Precio -->
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" class="form-control" name="precio" id="precio" step="0.01" value="<% if (modoEdicion) { %><%= producto.precio %><% } %>">
             </div>
-
-            <div class="form-control">
-                <label for="categoria">Categoria</label>
-                <input type="text" name="categoria" id="categoria" value="<% if (modoEdicion) { %><%= producto.categoria %><% } %>">
+    
+            <!-- Campo Categoria -->
+            <div class="mb-3">
+                <label for="categoria" class="form-label">Categoría</label>
+                <input type="text" class="form-control" name="categoria" id="categoria" value="<% if (modoEdicion) { %><%= producto.categoria %><% } %>">
             </div>
-
-            <div class="form-control">
-                <label for="color">Color</label>
-                <input type="text" name="color" id="color" value="<% if (modoEdicion) { %><%= producto.color %><% } %>">
+    
+            <!-- Campo Color -->
+            <div class="mb-3">
+                <label for="color" class="form-label">Color</label>
+                <input type="text" class="form-control" name="color" id="color" value="<% if (modoEdicion) { %><%= producto.color %><% } %>">
             </div>
             
-            <div class="form-control">
-                <label for="descripcion">Descripcion</label>
-                <textarea name="descripcion" id="descripcion" rows="5"><% if (modoEdicion) { %><%= producto.descripcion %><% } %></textarea>
+            <!-- Campo Descripción -->
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <textarea class="form-control" name="descripcion" id="descripcion" rows="5"><% if (modoEdicion) { %><%= producto.descripcion %><% } %></textarea>
             </div>
-
+    
+            <!-- Campo oculto para el ID si está en modo edición -->
             <% if (modoEdicion) { %>
                 <input type="hidden" value="<%= producto.id %>" name="idProducto">
             <% } %>
-
-            <button class="btn btn-verde" type="submit"><% if (modoEdicion) { %>Actualizar Producto<% } else { %>Crear Producto<% } %></button>
+    
+            <!-- Botón de Envío -->
+            <button class="btn btn-primary" type="submit">
+                <% if (modoEdicion) { %>Actualizar Producto<% } else { %>Crear Producto<% } %>
+            </button>
         </form>
     </main>
+    
 
 <%- include('../includes/end.ejs') %>

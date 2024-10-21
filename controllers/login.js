@@ -1,4 +1,5 @@
 const Usuario = require('../models/usuario');
+const Pedido = require("../models/pedido");
 
 exports.getLogin = (req, res) => {
 
@@ -23,10 +24,29 @@ exports.postLogin = (req, res) => {
         if (user.role === 'admin') {
             return res.redirect('/admin/productos')
         } else {
-            res.render('tienda/index', {
-                titulo: 'Pagina de inicio',
-                path: '/'
+            res.render('user/index', {
+                titulo: 'Mi cuenta',
+                path: '/mi-cuenta',
+                usuario: user
             })
         }
     })
 }
+
+
+exports.postMisPedidos = (req, res) => {
+    const idUsuario = req.body.idUsuario;
+    console.log(idUsuario);
+
+    Pedido.filterByIdUsuario(idUsuario, pedidos => {
+        if (pedidos.length === 0) {
+            return console.log('no tiene pedidos');
+        }
+        res.render('user/pedidos', {
+            titulo: 'Mis pedidos',
+            path: '/pedidos',
+            pedidos: pedidos
+        })
+    })
+}
+

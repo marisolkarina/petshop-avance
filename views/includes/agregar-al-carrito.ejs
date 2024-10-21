@@ -1,0 +1,7 @@
+<form action="/agregar-carrito" method="post">
+    <button class="btn btn-verde w-100" type="submit">Agregar al Carrito</button>
+    <input type="hidden" name="idProducto" value="<%= producto.id %>">
+
+    <label class="w-50">Cantidad</label>
+    <input type="number" id="cantidad" min="1" step="1" name="cantidad" value="1" class="form-control w-50"/>
+</form>

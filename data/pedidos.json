@@ -1,0 +1,39 @@
+[
+    {
+        "id": "1",
+        "idUsuario": "2",
+        "productos":[
+            {"id":"1",
+            "nombre":"Bandana con Gel Refrescante",
+            "cantidad":"1"
+            },
+            {"id":"2",
+            "nombre":"Blue Stars Chaleco Vintage",
+            "cantidad":"1"
+            }
+        ],
+        "precioTotal":18.00
+    },
+    {
+        "id": "2",
+        "idUsuario": "2",
+        "productos":[
+            {"id":"1",
+            "nombre":"Bandana con Gel Refrescante",
+            "cantidad":"1"
+            }
+        ],
+        "precioTotal":18.00
+    },
+    {
+        "id": "3",
+        "idUsuario": "0.8177912733611232",
+        "productos":[
+            {"id":"2",
+            "nombre":"Blue Stars Chaleco Vintage",
+            "cantidad":"1"
+            }
+        ],
+        "precioTotal":53.00
+    }
+]

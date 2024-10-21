@@ -27,5 +27,8 @@ router.get('/productos/marron', tiendaController.getProductosPorColor('marron'))
 //ver detalle de producto
 router.get('/productos/:idProducto', tiendaController.getProducto);
 
+router.post('/carrito', tiendaController.getCarrito);
+router.post('/agregar-carrito', tiendaController.postCarrito);
+
 
 module.exports = router;

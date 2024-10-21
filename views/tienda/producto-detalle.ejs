@@ -10,7 +10,9 @@
             <a href="/productos/<%= producto.id %>">
                 <img src="<%=producto.urlImagen %>" class="card-img-top" alt="<%= producto.nombre %>">
             </a>
-            <div class="card-body"> <button class="btn btn-verde w-100">Añadir al Carrito</button> </div>
+            <div class="card-body"> <button class="btn btn-verde w-100" type="submit">Añadir al Carrito</button> </div>
+            <input type="hidden" name="idProducto" value="<%= producto.id %>">
+
         </div>
         <div class="mx-3">
             <h5 class="card-title text-center mt-2"><%= producto.nombre %></h5>
