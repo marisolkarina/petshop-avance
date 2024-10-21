@@ -74,4 +74,34 @@ module.exports = class Carrito {
         });
     }
 
+
+    static actualizarCantidadProducto(id, nuevaCantidad, precio) {
+        fs.readFile(p, (err, fileContent) => {
+
+            let carrito = {productos: [], precioTotal: 0};
+            if (!err) {
+                carrito = JSON.parse(fileContent);
+            }
+
+            const productoExistente = carrito.productos.find(prod => prod.id === id);
+            if (!productoExistente) {
+                return;
+            }
+    
+            // Actualizar la cantidad
+            const cantidadAnterior = productoExistente.cantidad;
+            productoExistente.cantidad = nuevaCantidad;
+    
+            // Actualizar el precio total
+            carrito.precioTotal = carrito.precioTotal - (precio * cantidadAnterior) + (precio * nuevaCantidad);
+    
+            fs.writeFile(p, JSON.stringify(carrito), err => {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        });
+    }
+
+
 }

@@ -35,18 +35,18 @@
                                     </td>
                                     <td><%= producto.color %></td>
                                     <td>
-                                        <form action="/update-cantidad" method="POST">
-                                            <input type="hidden" name="productoId" value="<%= producto.id %>">
+                                        <form action="/actualizar-cantidad" method="POST">
+                                            <input type="hidden" name="idProducto" value="<%= producto.id %>">
                                             <input type="number" name="cantidad" value="<%= producto.cantidad %>" min="1" class="form-control">
                                             <button type="submit" class="btn btn-secondary mt-2">Actualizar</button>
                                         </form>
+                                         
                                     </td>
                                     <td><%= producto.precio %></td>
-                                    <input type="hidden" name="productoPrecio" value="<%= producto.precio %>">
                                     <td>S/. <%= (producto.precio*producto.cantidad).toFixed(2) %></td>
                                     <td>
                                         <form action="/eliminar-producto" method="POST">
-                                            <input type="text" name="idProducto" value="<%= producto.id %>">
+                                            <input type="hidden" name="idProducto" value="<%= producto.id %>">
                                             
                                             <button type="submit" class="btn btn-danger">Eliminar</button>
                                         </form>

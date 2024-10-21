@@ -176,3 +176,14 @@ exports.postEliminarProductoCarrito = (req, res) => {
     })
     
 }
+
+exports.postActualizarCantidadCarrito = (req, res) => {
+    const idProducto = req.body.idProducto;
+    const nuevaCantidad = parseInt(req.body.cantidad, 10);
+
+    Producto.findById(idProducto, producto => {
+        Carrito.actualizarCantidadProducto(idProducto, nuevaCantidad, producto.precio);
+        res.redirect('/carrito');
+    });
+};
+

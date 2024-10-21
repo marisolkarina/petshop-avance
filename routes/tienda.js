@@ -32,5 +32,6 @@ router.post('/agregar-carrito', tiendaController.postCarrito);
 
 router.post('/eliminar-producto', tiendaController.postEliminarProductoCarrito)
 
+router.post('/actualizar-cantidad', tiendaController.postActualizarCantidadCarrito);
 
 module.exports = router;
