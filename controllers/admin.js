@@ -66,12 +66,16 @@ exports.postEditarProducto = (req, res, next) => {
     const precio = req.body.precio;
     const urlImagen = req.body.urlImagen;
     const descripcion = req.body.descripcion;
+    const categoria = req.body.categoria;
+    const color = req.body.color;
     const productoActualizado = new Producto(
       idProducto,
       nombre,
       urlImagen,
       descripcion,
-      precio
+      precio,
+      categoria,
+      color
     );
     productoActualizado.save();
     res.redirect('/admin/productos');
